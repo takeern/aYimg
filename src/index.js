@@ -24,7 +24,7 @@ const aYimg = {
 
 // //test src majiang //i0.hdslb.com/bfs/activity-plat/static/20180820/4d1b86def27c4b3794e253d0bd1116f0/59ljrrn1nn.png
 // //test src person //i0.hdslb.com/bfs/activity-plat/static/20180820/4d1b86def27c4b3794e253d0bd1116f0/q05jnn1oz6.jpeg	
-const pro = init('http://localhost:8000/src/assets/timg.jpeg')
+const pro = init('http://localhost:8000/src/assets/award.jpeg')
   .then((ca) => {
     aYimg.init = true
     aYimg.canvas = ca 
@@ -43,7 +43,7 @@ pro.then(() => {
   clothes(grayScaleFn, 'avg')
 })
 .then(() => {
-  clothes(binary, 'ptile')
+  clothes(binary)
 })
 .then(() => {
   const { imageData, ctx } = aYimg
