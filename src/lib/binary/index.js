@@ -2,7 +2,11 @@ import { isImageData } from '../ulit'
 const debug = require('debug')('aYimg:grayscale')
 
 export default (imageData, code = 'otsu', ptile) => {
-  isImageData(imageData)
+  if(!isImageData(imageData)) throw new Error('get imageData error from binary')
+  // const isData = isImageData(imageData) ? true : false
+  // const isCopyData = isArray(imageData) ? true : false
+  // if(!isData && !isCopyData) throw new Error ('get imageData error from binary')
+  
   const { data } = imageData
   let threshold 
   switch(code) {
@@ -52,8 +56,8 @@ export default (imageData, code = 'otsu', ptile) => {
   }
   //均值双谷峰法 二值化
   case 'ptile': {
-    ptile = parseFloat(ptile, 10)
-    if(isNaN(ptile)) console.warn('ptlie error ')
+    ptile = parseFloat(ptile, 10)//eslint-disable-line
+    if(isNaN(ptile)) console.warn('ptlie error ')//eslint-disable-line
     let max = new Array(255).fill(0)
     for (let i = 0; i < data.length; i += 4) {
       if (max[data[i]]) {
@@ -91,4 +95,5 @@ export default (imageData, code = 'otsu', ptile) => {
     }
   }
   debug('binary success')
+  return imageData
 }

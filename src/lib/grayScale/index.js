@@ -1,7 +1,9 @@
 const debug = require('debug')('aYimg:grayscale')
+import { isImageData } from '../ulit'
+
 
 export default (imageData, code) => {
-  if(!imageData) throw new Error ('grayscale imageData undefined')
+  if(!isImageData(imageData)) throw new Error('get imageData error from grayScale')
   const { data } = imageData
   for(let i = 0; i < data.length; i += 4) {
     let grad
@@ -32,4 +34,5 @@ export default (imageData, code) => {
     data[i + 2] = grad
   }
   debug('grayScale success')
+  return imageData
 }
