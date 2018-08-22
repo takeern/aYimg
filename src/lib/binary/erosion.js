@@ -1,5 +1,6 @@
 import { isArray, deepcopy } from '../ulit'
 
+
 const getTemplate = (code) => {
   let template
   switch(code) {
@@ -72,7 +73,8 @@ const remberCode = (template) => {
   }
   return checkCode
 }
-const check = (data, x, y, checkCode) => {
+
+const checkEr = (data, x, y, checkCode) => {
   for(let i of checkCode) {
     if(data[y + i.y][x + i.x] === 0) {
       return 0
@@ -81,7 +83,16 @@ const check = (data, x, y, checkCode) => {
   return 1
 }
 
-export default (data, template = 2) => {
+const checkDi = (data, x, y, checkCode) => {
+  for(let i of checkCode) {
+    if(data[y + i.y][x + i.x] === 1) {
+      return 1
+    }
+  }
+  return 0
+}
+
+const fn = (data, template = 2, command) => {
   let width, height 
   const copyData = deepcopy(data)
   if(isArray(template)) {
@@ -98,14 +109,35 @@ export default (data, template = 2) => {
   const lenH = data.length - parseInt(height / 2)
   const len = data[0].length - parseInt(width / 2)
   const checkCode = remberCode(template)
-  for(let y = parseInt(height / 2); y <= lenH; y ++) {
-    for(let x = parseInt(width / 2); x <= len; x ++) {
-      if(data[y][x] !== 0) {
-        copyData[y][x] = check(data, x, y, checkCode)
+  if(command === 'erosive') {
+    for(let y = parseInt(height / 2); y < lenH; y ++) {
+      for(let x = parseInt(width / 2); x < len; x ++) {
+        if(data[y][x] !== 0) {
+          copyData[y][x] = checkEr(data, x, y, checkCode)
+        }
+      }
+    }
+  }else if(command === 'dilate') {
+    for(let y = parseInt(height / 2); y < lenH; y ++) {
+      for(let x = parseInt(width / 2); x < len; x ++) {
+        if(data[y][x] === 0) {
+          copyData[y][x] = checkDi(data, x, y, checkCode)
+        }
       }
     }
   }
   return copyData
 }
 
+const erosive = (data, template) => {
+  return fn(data, template, 'erosive')
+}
 
+const dilate = (data, template) => {
+  return fn(data, template, 'dilate')
+}
+
+export {
+  erosive,
+  dilate,
+}
