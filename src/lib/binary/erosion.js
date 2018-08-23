@@ -75,8 +75,9 @@ const remberCode = (template) => {
 }
 
 const checkEr = (data, x, y, checkCode) => {
-  for(let i of checkCode) {
-    if(data[y + i.y][x + i.x] !== 0) {
+  const { length } = checkCode
+  for(let i = 0; i < length; i++) {
+    if(data[y + checkCode[i].y][x + checkCode[i].x] !== 0) {
       return 255
     }
   }
@@ -84,8 +85,9 @@ const checkEr = (data, x, y, checkCode) => {
 }
 
 const checkDi = (data, x, y, checkCode) => {
-  for(let i of checkCode) {
-    if(data[y + i.y][x + i.x] === 0) {
+  const { length } = checkCode
+  for(let i = 0; i < length; i++) {
+    if(data[y + checkCode[i].y][x + checkCode[i].x] === 0) {
       return 0
     }
   }
@@ -136,6 +138,11 @@ const erosive = (data, template) => {
 const dilate = (data, template) => {
   return fn(data, template, 'dilate')
 }
+
+// const erosived = wrapper(fn, data, template) => {
+  
+// }
+
 
 export {
   erosive,
