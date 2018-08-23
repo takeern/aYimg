@@ -3,9 +3,6 @@ const debug = require('debug')('aYimg:grayscale')
 
 export default (imageData, code = 'otsu', ptile) => {
   if(!isImageData(imageData)) throw new Error('get imageData error from binary')
-  // const isData = isImageData(imageData) ? true : false
-  // const isCopyData = isArray(imageData) ? true : false
-  // if(!isData && !isCopyData) throw new Error ('get imageData error from binary')
   
   const { data } = imageData
   let threshold 

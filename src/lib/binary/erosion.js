@@ -76,20 +76,20 @@ const remberCode = (template) => {
 
 const checkEr = (data, x, y, checkCode) => {
   for(let i of checkCode) {
-    if(data[y + i.y][x + i.x] === 0) {
-      return 0
+    if(data[y + i.y][x + i.x] !== 0) {
+      return 255
     }
   }
-  return 1
+  return 0
 }
 
 const checkDi = (data, x, y, checkCode) => {
   for(let i of checkCode) {
-    if(data[y + i.y][x + i.x] === 1) {
-      return 1
+    if(data[y + i.y][x + i.x] === 0) {
+      return 0
     }
   }
-  return 0
+  return 255
 }
 
 const fn = (data, template = 2, command) => {
@@ -112,7 +112,7 @@ const fn = (data, template = 2, command) => {
   if(command === 'erosive') {
     for(let y = parseInt(height / 2); y < lenH; y ++) {
       for(let x = parseInt(width / 2); x < len; x ++) {
-        if(data[y][x] !== 0) {
+        if(data[y][x] === 0) {
           copyData[y][x] = checkEr(data, x, y, checkCode)
         }
       }
@@ -120,7 +120,7 @@ const fn = (data, template = 2, command) => {
   }else if(command === 'dilate') {
     for(let y = parseInt(height / 2); y < lenH; y ++) {
       for(let x = parseInt(width / 2); x < len; x ++) {
-        if(data[y][x] === 0) {
+        if(data[y][x] !== 0) {
           copyData[y][x] = checkDi(data, x, y, checkCode)
         }
       }
