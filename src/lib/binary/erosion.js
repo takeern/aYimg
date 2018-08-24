@@ -1,5 +1,6 @@
 import { isArray, deepcopy } from '../ulit'
 
+// todoChange for ++ => --
 
 const getTemplate = (code) => {
   let template
@@ -139,9 +140,7 @@ const dilate = (data, template) => {
   return fn(data, template, 'dilate')
 }
 
-// const erosived = wrapper(fn, data, template) => {
-  
-// }
+// const erosived = wrapper(erosive, data, template) 
 
 
 export {
