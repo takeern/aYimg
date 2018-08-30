@@ -12,7 +12,7 @@ index.js中含有所有图片处理逻辑 也有example，31行改变图片引�
 
 ### 当前支持方法
 
-详细 [api](https://github.com/takeern/aYimg/docs)
+详细 [api](https://github.com/takeern/aYimg/tree/master/docs)
 
 ### 应用场景
 
