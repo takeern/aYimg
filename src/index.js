@@ -6,31 +6,8 @@ import init from './lib/init'
 import grayScaleFn from './lib/grayScale/index'
 import binary from './lib/binary/binary'
 import { toDobuleArray, dataFromCopy } from './lib/ulit'
-
-
-//test
-
 import { erosive, dilate } from './lib/binary/erosion'
-// import { opening } from './lib/binary/index'
-// const copyData = [
-//   [ 0, 1, 0, 1, 0, 0 ],
-//   [ 0, 1, 1, 0, 1, 0 ],
-//   [ 0, 0, 1, 0, 0, 0 ],
-//   [ 0, 0, 1, 1, 0, 0 ],
-//   [ 0, 0, 0, 0, 0, 0 ],
-// ]
 
-// const template = [
-//   [ 1, 1, 1, 1, 1 ],
-//   [ 1, 1, 1, 1, 1 ],
-//   [ 1, 1, 1, 1, 1 ],
-//   [ 1, 1, 1, 1, 1 ],
-//   [ 1, 1, 1, 1, 1 ],
-// ]
-
-// debug(dilate(copyData, template), 'erosion')
-
-//test
 
 
 const clothes = function (fn) {
@@ -86,15 +63,6 @@ pro.then(() => {
   debug(copyData)
   return copyData
 })
-
-
-
-// .then((copyData) => {
-//   const data = opening(copyData, 1)
-//   return data
-// })
-
-
 .then((copyData) => {
   const data = erosive(copyData, 1)
   return data
@@ -111,16 +79,6 @@ pro.then(() => {
   const data = dilate(copyData, 3)
   return data
 })
-// .then((copyData) => {
-//   const data = erosive(copyData, 4)
-//   return data
-// })
-// .then((data) => {
-//   const { canvas, imageData } = aYimg
-//   // debug(data)
-//   dataFromCopy(imageData, data)
-//   // debug(imageData)
-// })
 .then((data) => {
   const { imageData, ctx } = aYimg
   dataFromCopy(imageData, data)
@@ -135,7 +93,7 @@ const pick = function (showPiex) {
   const piex = aYimg.ctx.getImageData(x, y, 1, 1)
   const { data } = piex
   const rgba = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`
-  showPiex.style.backgroundColor = rgba;
+  showPiex.style.backgroundColor = rgba
   showPiex.textContent = `${rgba} ${x} ${y}`
 }
 
