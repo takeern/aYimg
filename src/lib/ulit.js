@@ -14,9 +14,11 @@ const toDobuleArray = (imageData, canvas) => {
   const { data } = imageData
   let pix = []
   const copyData = []
-  for(let i = 0; i < data.length; i += 4) {
+  const { length } = data
+  const { width } = canvas
+  for(let i = 0; i < length; i += 4) {
     pix.push(data[i])
-    if((i / 4 + 1) % canvas.width === 0) {
+    if((i / 4 + 1) % width === 0) {
       copyData.push(pix)
       pix = []
     }
@@ -42,15 +44,25 @@ function deepcopy(obj) {
 const dataFromCopy = (imageData, copyData) => {
   if(!isImageData(imageData)) throw new Error ('get imageData error from dataFromCopy')
   const { data } = imageData
-  copyData = copyData.reduce(
-    (acc, cur) => acc.concat(cur)
-  )
-  copyData.map((item, index) => { //eslint-disable-line
-    data[ index * 4 ] = item
-    data[ index * 4 + 1 ] = item
-    data[ index * 4 + 2 ] = item
-  })
+  const { length } = copyData
+  const len = copyData[1].length
+  for(let y = 0; y < length; y++) { 
+    for(let x = 0; x < len; x++) {
+      const index = (y * len + x) 
+      data[ index * 4 ] = copyData[y][x]
+      data[ index * 4 + 1 ] = copyData[y][x]
+      data[ index * 4 + 2 ] = copyData[y][x]
+    }
+  }
 }
+
+
+// const wrapper = (fn, data, template) => {
+//   const dataType = isImageData(data) ? 'imageData' : 'copyData'
+//   const copyData = dataType === 'imageData' ? toDobuleArray(data) : data
+//   const handleData = fn(copyData, template)
+//   return dataType === 'imageData' ? dataFromCopy(data, handleData) : handleData
+// }
 
 
 

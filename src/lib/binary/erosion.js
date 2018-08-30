@@ -1,5 +1,6 @@
 import { isArray, deepcopy } from '../ulit'
 
+// todoChange for ++ => --
 
 const getTemplate = (code) => {
   let template
@@ -111,6 +112,8 @@ const fn = (data, template = 2, command) => {
   const lenH = data.length - parseInt(height / 2)
   const len = data[0].length - parseInt(width / 2)
   const checkCode = remberCode(template)
+
+
   if(command === 'erosive') {
     for(let y = parseInt(height / 2); y < lenH; y ++) {
       for(let x = parseInt(width / 2); x < len; x ++) {
@@ -131,6 +134,8 @@ const fn = (data, template = 2, command) => {
   return copyData
 }
 
+
+
 const erosive = (data, template) => {
   return fn(data, template, 'erosive')
 }
@@ -139,9 +144,7 @@ const dilate = (data, template) => {
   return fn(data, template, 'dilate')
 }
 
-// const erosived = wrapper(fn, data, template) => {
-  
-// }
+// const erosived = wrapper(erosive, data, template) 
 
 
 export {
