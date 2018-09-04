@@ -52,10 +52,10 @@ export default (imageData, code) => {
     for(let i = width * 4; i < len; i += 4) {
       const x = i % (width * 4)
       if(x !== 0 && x !== (width - 1) * 4) {
-        const operator = 4 * log10(copyData[i] + 1) - [ log10(copyData[i - 4] + 1) + log10(copyData[i + 4] + 1) + log10(copyData[i - 4 * width]+ 1) + log10(copyData[i + 4 * width] + 1) ]
-        data [i] = operator * 46 // eslint-disable-line
-        data [i + 1] = operator * 46 // eslint-disable-line
-        data [i + 2] = operator * 46  // eslint-disable-line
+        const operator = 46 * (4 * log10(copyData[i] + 1) - [ log10(copyData[i - 4] + 1) + log10(copyData[i + 4] + 1) + log10(copyData[i - 4 * width]+ 1) + log10(copyData[i + 4 * width] + 1) ]) // eslint-disable-line
+        data [i] = operator 
+        data [i + 1] = operator 
+        data [i + 2] = operator  
       }
     }
     break

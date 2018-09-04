@@ -23,11 +23,9 @@ const aYimg = {
   copyData: [],
 }
 
-
-
 // //test src majiang //i0.hdslb.com/bfs/activity-plat/static/20180820/4d1b86def27c4b3794e253d0bd1116f0/59ljrrn1nn.png
 // //test src person //i0.hdslb.com/bfs/activity-plat/static/20180820/4d1b86def27c4b3794e253d0bd1116f0/q05jnn1oz6.jpeg	
-const pro = init('http://localhost:8000/src/assets/timg.jpeg')
+const pro = init('http://localhost:8000/src/assets/patch.jpeg')
   .then((ca) => {
     aYimg.init = true
     aYimg.canvas = ca 
@@ -49,7 +47,6 @@ const pro = init('http://localhost:8000/src/assets/timg.jpeg')
   })
   // .catch(e => console.warn(e, 'init'))
 
-
 pro.then(() => {
   clothes(grayScaleFn, 'avg')
 })
@@ -67,7 +64,6 @@ pro.then(() => {
   ctx.putImageData(imageData, 0, 0)
 })
 // .catch(e => console.warn(e.message, 'from proccing eeror'))
-
 
 const pick = function (showPiex) {
   const { layerX : x, layerY : y } = event
