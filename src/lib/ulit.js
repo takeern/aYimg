@@ -64,7 +64,9 @@ const dataFromCopy = (imageData, copyData) => {
 //   return dataType === 'imageData' ? dataFromCopy(data, handleData) : handleData
 // }
 
-
+const copyImageData = (data) => {
+  return new Uint8ClampedArray(data) 
+}
 
 export {
   isImageData,
@@ -73,4 +75,5 @@ export {
   dataFromCopy,
   isString,
   deepcopy,
+  copyImageData,
 }
