@@ -5,10 +5,9 @@ import init from './lib/init'
 //proccing
 import grayScaleFn from './lib/grayScale/index'
 import binary from './lib/binary/binary'
-import { toDobuleArray, dataFromCopy } from './lib/ulit'
-import { erosive, dilate } from './lib/binary/erosion'
-
-
+// import { toDobuleArray, dataFromCopy } from './lib/ulit'
+// import { erosive, dilate } from './lib/binary/erosion'
+import sharpen from './lib/sharpening'
 
 const clothes = function (fn) {
   return fn(aYimg.imageData, ...[ ...arguments ].slice(1, arguments.length))
@@ -28,7 +27,7 @@ const aYimg = {
 
 // //test src majiang //i0.hdslb.com/bfs/activity-plat/static/20180820/4d1b86def27c4b3794e253d0bd1116f0/59ljrrn1nn.png
 // //test src person //i0.hdslb.com/bfs/activity-plat/static/20180820/4d1b86def27c4b3794e253d0bd1116f0/q05jnn1oz6.jpeg	
-const pro = init('http://localhost:8000/src/assets/patch.jpeg')
+const pro = init('http://localhost:8000/src/assets/timg.jpeg')
   .then((ca) => {
     aYimg.init = true
     aYimg.canvas = ca 
@@ -58,30 +57,12 @@ pro.then(() => {
   clothes(binary)
 })
 .then(() => {
-  const { canvas, imageData } = aYimg
-  const copyData = toDobuleArray(imageData, canvas)
-  debug(copyData)
-  return copyData
+  clothes(sharpen, 'wallis')
 })
-.then((copyData) => {
-  const data = erosive(copyData, 1)
-  return data
-})
-.then((copyData) => {
-  const data = erosive(copyData, 1)
-  return data
-})
-.then((copyData) => {
-  const data = erosive(copyData, 1)
-  return data
-})
-.then((copyData) => {
-  const data = dilate(copyData, 3)
-  return data
-})
-.then((data) => {
+.then(() => {
   const { imageData, ctx } = aYimg
-  dataFromCopy(imageData, data)
+  // dataFromCopy(imageData, data)
+  debug(imageData)
   debug('put image data')
   ctx.putImageData(imageData, 0, 0)
 })
@@ -97,8 +78,22 @@ const pick = function (showPiex) {
   showPiex.textContent = `${rgba} ${x} ${y}`
 }
 
-
-
 //todo 
 // 1 middleware like proxy should done
 // 2 change data handle  delete handledata
+
+//test
+// const arr = [ 3, 3, 3, 3, 3, 3, 8, 7, 6, 3, 3, 6, 0, 5, 3, 3, 7, 8, 4, 3, 3, 8, 3, 3, 3 ]
+// const op = []
+// for (let i = 0; i < arr.length; i++) {
+//   const a = new Array(4).fill(arr[i])
+//   op.push(...a)
+// }
+// debug(op)
+// op.width = 5
+// const tsData = {
+//   width: 5,
+//   data: op,
+// }
+// debug(sharpen(tsData, 'sobel'))
+//
