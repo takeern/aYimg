@@ -5,8 +5,8 @@ import init from './lib/init'
 //proccing
 import grayScaleFn from './lib/grayScale/index'
 import binary from './lib/binary/binary'
-import { erosive, dilate } from './lib/binary/erosive'
-import sharpen from './lib/sharpening'
+// import { erosive, dilate } from './lib/binary/erosive'
+// import sharpen from './lib/sharpening'
 
 const clothes = function (fn) {
   return fn(aYimg.imageData, ...[ ...arguments ].slice(1, arguments.length))
@@ -22,7 +22,7 @@ const aYimg = {
   copyData: [],
 }
 
-const pro = init('http://localhost:8000/src/assets/patch.jpeg')
+const pro = init('http://localhost:8000/src/assets/fiter.jpeg')
   .then((ca) => {
     aYimg.init = true
     aYimg.canvas = ca 
@@ -45,26 +45,24 @@ const pro = init('http://localhost:8000/src/assets/patch.jpeg')
   // .catch(e => console.warn(e, 'init'))
 
 pro.then(() => {
-  clothes(grayScaleFn, 'avg')
+  clothes(grayScaleFn, 'weight')
 })
 .then(() => {
-  clothes(binary)
+  clothes(binary, 'otsu')
 })
-.then(() => {
-  clothes(erosive, 1)
-})
-.then(() => {
-  clothes(erosive, 1)
-})
-.then(() => {
-  clothes(erosive, 1)
-})
-.then(() => {
-  clothes(dilate, 1)
-})
-.then(() => {
-  clothes(sharpen, 'sobel')
-})
+
+// .then(() => {
+//   clothes(dilate, 1)
+// })
+// .then(() => {
+//   clothes(dilate, 1)
+// })
+// .then(() => {
+//   clothes(dilate, 1)
+// })
+// .then(() => {
+//   clothes(sharpen, 'roberts')
+// })
 .then(() => {
   const { imageData, ctx } = aYimg
   debug(imageData)
@@ -87,7 +85,7 @@ const pick = function (showPiex) {
 // 2 change data handle  delete handledata
 
 // test
-// const arr = [ 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0 ]
+const arr = [ 1, 3, 2, 3, 2, 1, 2, 1, 4, 3, 1, 10, 2, 3, 4, 5, 2, 6, 18, 8, 5, 5, 7, 0, 8 ]
 // const op = []
 // for (let i = 0; i < arr.length; i++) {
 //   const a = new Array(4).fill(arr[i])
@@ -105,3 +103,4 @@ const pick = function (showPiex) {
 //   copyData.push(data1[i]) 
 // }
 // debug('copydata', copyData)
+

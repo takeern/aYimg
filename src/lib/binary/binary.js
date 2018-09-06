@@ -3,7 +3,6 @@ const debug = require('debug')('aYimg:grayscale')
 
 export default (imageData, code = 'otsu', ptile) => {
   if(!isImageData(imageData)) throw new Error('get imageData error from binary')
-  
   const { data } = imageData
   let threshold 
   switch(code) {
