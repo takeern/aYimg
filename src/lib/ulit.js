@@ -65,7 +65,7 @@ const dataFromCopy = (imageData, copyData) => {
 // }
 
 const copyImageData = (data) => {
-  return new Uint8ClampedArray(data) 
+  return isArray(data) ? Array.from(data) :new Uint8ClampedArray(data) 
 }
 
 export {
