@@ -2,7 +2,7 @@ import { isImageData, copyImageData } from '../ulit'
 import { log10 } from '../math'
 // const debug = require('debug')('aYimg:sharpening')
 
-export default (imageData, code) => {
+export default (imageData, code = 'sobel') => {
   if (!isImageData(imageData)) throw new Error('get imageData error from sharpening')
   const { data, width } = imageData
   const len = data.length - width * 4

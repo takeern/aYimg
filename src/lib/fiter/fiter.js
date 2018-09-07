@@ -1,6 +1,6 @@
 import { byAsc, absByAsc, arrSum } from '../math'
 
-export default (copyData, imageData, code) => {
+export default (copyData, imageData, code = 'knnA') => {
   const { data, width } = imageData
   const { length } = data
   const start = (width + 1) * 4
