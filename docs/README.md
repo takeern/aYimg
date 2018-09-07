@@ -12,7 +12,7 @@ code  |string  | weight  | 判断使用那种方法灰化 ‘average’=》平�
 参数          | 类型           | 默认        | 说明           | 必填 |
 :----------- | :-----------: |:-----------:|:-------------: |:------------- |
 imagedata     | imagedata     | 无          | imagedata类型  |   Y |
-code     | string     | 无          | 使用那种方法二值化 ‘otsu’=>大津法 ‘average’=灰度平均值法 ‘pitle’=》均值双谷峰法 |  Y |
+code     | string     | 'otsu'          | 使用那种方法二值化 ‘otsu’=>大津法 ‘average’=灰度平均值法 ‘pitle’=》均值双谷峰法 |  Y |
 ptile  |  int | 无 | 使用ptile方法二值化需要评估背景占整个图中的百分比 传入大小为0～1之间 |  N |
 
 - sharpen() 锐化/边缘检测
@@ -20,7 +20,14 @@ ptile  |  int | 无 | 使用ptile方法二值化需要评估背景占整个图�
 参数          | 类型           | 默认        | 说明           | 必填 |
 :----------- | :-----------: |:-----------:|:-------------: |:------------- |
 imagedata     | imagedata     | 无          | imagedata类型  |   Y |
-code  | string  | 无  | 判断使用那种算子锐化 可选值 'sobel', 'roberts', 'priwitt', 'wallis' | Y |
+code  | string  | 'sobel'  | 判断使用那种算子锐化 可选值 'sobel', 'roberts', 'priwitt', 'wallis' | Y |
+
+- fiter() 腐蚀
+
+参数          | 类型           | 默认        | 说明           | 必填 |
+:----------- | :-----------: |:-----------:|:-------------: |:------------- |
+imagedata     | imagedata     | 无          | imagedata类型  |   Y |
+code  | string  | knnA  | avg=>均值滤波 median=>中值滤波 knnA=>k近邻平滑均值滤波 knnM=>k近邻平滑中值滤波 snn=>对称近邻均值滤波 | Y |
 
 - erosive() 腐蚀
 
