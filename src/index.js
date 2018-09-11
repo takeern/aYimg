@@ -5,8 +5,9 @@ import init from './lib/init'
 //proccing
 import grayScaleFn from './lib/grayScale/index'
 import binary from './lib/binary/binary'
-// import fiter from './lib/fiter/index'
-// import { erosive, dilate } from './lib/binary/erosive'
+import fiter from './lib/fiter/index'
+import { erosive, dilate } from './lib/binary/erosive'
+import reflect from './lib/reflect/index' 
 // import sharpen from './lib/sharpening'
 
 const clothes = function (fn) {
@@ -23,7 +24,7 @@ const aYimg = {
   copyData: [],
 }
 
-const pro = init('http://localhost:8000/src/assets/fiter.jpeg')
+const pro = init('http://localhost:8000/src/assets/patchEasy.jpeg')
   .then((ca) => {
     aYimg.init = true
     aYimg.canvas = ca 
@@ -45,42 +46,30 @@ const pro = init('http://localhost:8000/src/assets/fiter.jpeg')
   })
   // .catch(e => console.warn(e, 'init'))
 
-pro.then(() => {
+pro
+.then(() => {
   clothes(grayScaleFn, 'weight')
 })
 .then(() => {
   clothes(binary, 'average')
 })
 
+.then(() => {
+  clothes(erosive, 1)
+})
+.then(() => {
+  clothes(erosive, 1)
+})
+.then(() => {
+  clothes(erosive, 1)
+})
+.then(() => {
+  clothes(erosive, 1)
+})
+
+
 // .then(() => {
-//   clothes(erosive, 1)
-// })
-// .then(() => {
-//   clothes(erosive, 1)
-// })
-// .then(() => {
-//   clothes(erosive, 1)
-// })
-// .then(() => {
-//   clothes(dilate, 1)
-// })
-// .then(() => {
-//   clothes(dilate, 1)
-// })
-// .then(() => {
-//   clothes(fiter, 'knnA')
-// })
-// .then(() => {
-//   clothes(fiter, 'knnA')
-// })
-// .then(() => {
-//   clothes(fiter, 'knnA')
-// })
-// .then(() => {
-//   clothes(fiter, 'knnA')
-// })
-// .then(() => {
-//   clothes(sharpen, 'roberts')
+//   clothes(sharpen, 'sobel')
 // })
 .then(() => {
   const { imageData, ctx } = aYimg
@@ -88,6 +77,18 @@ pro.then(() => {
   debug('put image data')
   ctx.putImageData(imageData, 0, 0)
 })
+.then(() => {
+  const [ relectData, xBorder, yBorder ] = clothes(reflect, 'y')
+  const { ctx } = aYimg
+  debug(relectData)
+  debug(xBorder)
+  debug(yBorder)
+  for (let i = 0; i < yBorder.length; i++) {
+    ctx.strokeStyle = 'green'
+    ctx.strokeRect(parseInt(xBorder[i].start / 2), parseInt(yBorder[i].start / 2), parseInt(xBorder[i].width / 2), parseInt(yBorder[i].width / 2))
+  }
+})
+
 // .catch(e => console.warn(e.message, 'from proccing eeror'))
 
 const pick = function (showPiex) {
@@ -124,3 +125,4 @@ const pick = function (showPiex) {
 //   copyData.push(data1[i]) 
 // }
 // debug('fiterData', copyData)
+
