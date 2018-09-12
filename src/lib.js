@@ -92,12 +92,6 @@ const Ayimg = class {
   }
 }
 
-const ayimg1 = new Ayimg ()
-
-ayimg1.init('http://localhost:8000/src/assets/patchEasy.jpeg').then(() => {
-  ayimg1.grayScale().binary('avg').opening().erosive(3).show().reflect()
-})
-
 export default Ayimg
 
 export {
@@ -111,9 +105,5 @@ export {
   opening,
   closing,
 }
-
-
-
-
 
 
