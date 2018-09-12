@@ -1,0 +1,9 @@
+{
+  "presets":["@babel/env"],
+  "plugins": [
+    "@babel/transform-arrow-functions",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/transform-runtime",
+    "add-module-exports"
+  ]
+}
