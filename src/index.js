@@ -25,6 +25,22 @@ const closing = (imageData, times = 1, template = 1) => {
   return data
 }
 
+const erosiveFn = (imageData, times = 1, template = 1) => {
+  let data
+  for(let i = 0; i < times; i++) {
+    data = erosive(imageData, template)
+  }
+  return data
+}
+
+const dilateFn = (imageData, times = 1, template = 1) => {
+  let data
+  for(let i = 0; i < times; i++) {
+    data = dilate(imageData, template)
+  }
+  return data
+}
+
 const Ayimg = class {
   constructor () {
     this.imgComplete = false
@@ -92,11 +108,6 @@ const Ayimg = class {
   }
 }
 
-const ayimg1 = new Ayimg ()
-
-ayimg1.init('http://localhost:8000/src/assets/patchEasy.jpeg').then(() => {
-  ayimg1.grayScale().binary('avg').opening().erosive(3).show().reflect()
-})
 
 export default Ayimg
 
@@ -106,10 +117,11 @@ export {
   fiter,
   reflect,
   sharpen,
-  erosive,
-  dilate,
+  erosiveFn as erosive,
+  dilateFn as dilate,
   opening,
   closing,
+  Ayimg,
 }
 
 
