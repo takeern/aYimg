@@ -132,7 +132,7 @@ const fn = (imageData, template = 2, code) => {
       }
     }
   }
-  return data
+  return imageData
 }
 
 const erosive = (imageData, template) => {

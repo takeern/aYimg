@@ -14,10 +14,12 @@ const isString = (s) => {
 }
 
 //new canvas then push
-const initCanvas = (img, width, height) => {
+export const initCanvas = function (img, width, height) {
   if(img.nodeType !== 1) {
     throw new Error ('canvas初始化失败传入不为img')
   }
+  width = width || img.width
+  height = height || img.height
   const canvas = document.createElement('canvas')
   const imgWidth = img.width
   const imgHeight = img.height
@@ -27,29 +29,35 @@ const initCanvas = (img, width, height) => {
   canvas.style.width = width + 'px'
   canvas.style.height = height + 'px'
   const ctx = canvas.getContext('2d')
+  ctx.imageSmoothingEnabled = true
   ctx.scale(scale, scale)
   ctx.drawImage(img, 0, 0)
-  return canvas
+  this.canvas = canvas
+  this.ctx = ctx
+  this.imgComplete = true
+  this.imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+  document.getElementsByTagName('body')[0].appendChild(canvas)
+  debug('canvas init success')
 }
 
 //judgment img parma
-export default (imgObj, width, height) => {
-  return new Promise ((resolve) => {
+
+export const initImg = function (imgObj, width, height) {
+  return new Promise((resolve) => {
     const img = new Image()
     img.setAttribute('crossOrigin', 'Anonymous')
     if(isString(imgObj)) {
       img.src = imgObj
     }else if(imgObj && imgObj.nodeType === 1) {
-      img.src = imgObj.src
+      initCanvas.bind(this)(imgObj, width, height)
+      resolve()
     }else {
       throw new Error('解析img失败') 
     }
-    img.onload = () => {
-      width = width || img.width
-      height = height || img.height
-      const canvas = initCanvas(img, width, height)
-      debug('canvas init success')
-      resolve(canvas)
+    img.onload =() => {
+      initCanvas.bind(this)(img, width, height)
+      resolve()
     }
   })
 }
+

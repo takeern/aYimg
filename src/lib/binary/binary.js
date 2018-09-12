@@ -42,7 +42,7 @@ export default (imageData, code = 'otsu', ptile) => {
     break
   }
   //灰度平均值法 二值话
-  case 'average': {
+  case 'avg': {
     let sum = 0
     for(let i = 0; i < data.length; i += 4) {
       sum += data[i]

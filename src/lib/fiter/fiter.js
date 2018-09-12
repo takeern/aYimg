@@ -112,5 +112,5 @@ export default (copyData, imageData, code = 'knnA') => {
   }
   default: throw new Error ('get code error from fiter')  
   }
-  return data
+  return imageData
 }
