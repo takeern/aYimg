@@ -56,13 +56,21 @@ const dataFromCopy = (imageData, copyData) => {
   }
 }
 
-
-// const wrapper = (fn, data, template) => {
-//   const dataType = isImageData(data) ? 'imageData' : 'copyData'
-//   const copyData = dataType === 'imageData' ? toDobuleArray(data) : data
-//   const handleData = fn(copyData, template)
-//   return dataType === 'imageData' ? dataFromCopy(data, handleData) : handleData
-// }
+const testPix = (canvas, ctx) => {
+  const div = document.createElement('div')
+  canvas.addEventListener('mousemove', () => {
+    document.querySelector('body').appendChild(div)
+    pick(div)
+  })
+  const pick = function (showPiex) {
+    const { layerX : x, layerY : y } = event
+    const piex = ctx.getImageData(x, y, 1, 1)
+    const { data } = piex
+    const rgba = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`
+    showPiex.style.backgroundColor = rgba
+    showPiex.textContent = `${rgba} ${x} ${y}`
+  }
+}
 
 const copyImageData = (data) => {
   return isArray(data) ? Array.from(data) :new Uint8ClampedArray(data) 
@@ -76,4 +84,5 @@ export {
   isString,
   deepcopy,
   copyImageData,
+  testPix,
 }
