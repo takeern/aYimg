@@ -5,37 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "grayScale", {
-  enumerable: true,
-  get: function get() {
-    return _index.default;
-  }
-});
-Object.defineProperty(exports, "binary", {
-  enumerable: true,
-  get: function get() {
-    return _binary2.default;
-  }
-});
-Object.defineProperty(exports, "fiter", {
-  enumerable: true,
-  get: function get() {
-    return _index2.default;
-  }
-});
-Object.defineProperty(exports, "reflect", {
-  enumerable: true,
-  get: function get() {
-    return _index3.default;
-  }
-});
-Object.defineProperty(exports, "sharpen", {
-  enumerable: true,
-  get: function get() {
-    return _sharpening.default;
-  }
-});
-exports.Ayimg = exports.closing = exports.opening = exports.dilate = exports.erosive = exports.default = void 0;
+exports.default = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -64,62 +34,6 @@ var _sharpening = _interopRequireDefault(require("./lib/sharpening"));
 /*eslint no-console: ["error", { allow: ["warn", "error"] }] */
 var debug = require('debug')('aYimg:index'); // eslint-disable-line
 
-
-var opening = function opening(imageData) {
-  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  var template = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-  var data;
-
-  for (var i = 0; i < times; i++) {
-    data = (0, _erosive2.dilate)((0, _erosive2.erosive)(imageData, template), template);
-  }
-
-  return data;
-};
-
-exports.opening = opening;
-
-var closing = function closing(imageData) {
-  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  var template = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-  var data;
-
-  for (var i = 0; i < times; i++) {
-    data = (0, _erosive2.erosive)((0, _erosive2.dilate)(imageData, template), template);
-  }
-
-  return data;
-};
-
-exports.closing = closing;
-
-var erosiveFn = function erosiveFn(imageData) {
-  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  var template = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-  var data;
-
-  for (var i = 0; i < times; i++) {
-    data = (0, _erosive2.erosive)(imageData, template);
-  }
-
-  return data;
-};
-
-exports.erosive = erosiveFn;
-
-var dilateFn = function dilateFn(imageData) {
-  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  var template = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-  var data;
-
-  for (var i = 0; i < times; i++) {
-    data = (0, _erosive2.dilate)(imageData, template);
-  }
-
-  return data;
-};
-
-exports.dilate = dilateFn;
 
 var Ayimg =
 /*#__PURE__*/
@@ -263,6 +177,6 @@ function () {
   return Ayimg;
 }();
 
-exports.Ayimg = Ayimg;
 var _default = Ayimg;
 exports.default = _default;
+module.exports = exports.default;

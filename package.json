@@ -1,13 +1,13 @@
 {
   "name": "ayimg",
-  "version": "1.0.4",
-  "description": "image Processing Edge detection 图像处理 边缘检测",
-  "main": "./es5/index.js",
+  "version": "1.0.0",
+  "description": "image fitter",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --inline --hot --port 3003",
-    "bable": "babel src/ -d es5/"
+    "babel": "babel /src -d /es5"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/takeern/aYimg#readme",
   "dependencies": {
-    "@babel/runtime": "^7.0.0"
+    "debug": "^3.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   }
 }
