@@ -9,38 +9,6 @@ import { erosive, dilate } from './lib/binary/erosive'
 import reflect from './lib/reflect/index' 
 import sharpen from './lib/sharpening'
 
-const opening = (imageData, times = 1, template = 1) => {
-  let data
-  for(let i = 0; i < times; i++) {
-    data = dilate(erosive(imageData, template), template)
-  }
-  return data
-}
-
-const closing = (imageData, times = 1, template = 1) => {
-  let data
-  for(let i = 0; i < times; i++) {
-    data = erosive(dilate(imageData, template), template)
-  }
-  return data
-}
-
-const erosiveFn = (imageData, times = 1, template = 1) => {
-  let data
-  for(let i = 0; i < times; i++) {
-    data = erosive(imageData, template)
-  }
-  return data
-}
-
-const dilateFn = (imageData, times = 1, template = 1) => {
-  let data
-  for(let i = 0; i < times; i++) {
-    data = dilate(imageData, template)
-  }
-  return data
-}
-
 const Ayimg = class {
   constructor () {
     this.imgComplete = false
@@ -48,9 +16,9 @@ const Ayimg = class {
     this.imageData = null
     this.canvas = null
   }
-  async init (imgObj, width, height) {
-    await initImg.bind(this)(imgObj, width, height)
-    // return this
+  async init (el, imgObj, width, height) {
+    await initImg.bind(this)(el, imgObj, width, height)
+    return this
   }
   grayScale (code = 'weight') {
     grayScale(this.imageData, code)
@@ -109,20 +77,10 @@ const Ayimg = class {
 }
 
 
-export default Ayimg
 
-export {
-  grayScale,
-  binary,
-  fiter,
-  reflect,
-  sharpen,
-  erosiveFn as erosive,
-  dilateFn as dilate,
-  opening,
-  closing,
-  Ayimg,
-}
+
+
+export default Ayimg
 
 
 
