@@ -76,10 +76,6 @@ const Ayimg = class {
   }
 }
 
-
-
-
-
 export default Ayimg
 
 

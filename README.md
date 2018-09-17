@@ -3,7 +3,9 @@
 ### usage
 
 Install dependencies:
-    npm i ayimg --save-dev
+```bash
+npm i ayimg --save-dev
+```
 
 ```javascript
 import Ayimg from 'ayimg'
