@@ -1,0 +1,11 @@
+src
+test
+example
+.DS_Store
+node_modules
+# Editor directories and files
+.idea
+.vscode
+.history
+dist
+staticServer

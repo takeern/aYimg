@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --inline --hot --port 3003"
+    "start": "webpack-dev-server --inline --hot --port 3003",
+    "babel": "babel /src -d /es5"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,6 @@
   "homepage": "https://github.com/takeern/aYimg#readme",
   "dependencies": {
     "debug": "^3.1.0",
-    "echarts": "^4.1.0",
-    "gpu.js": "^1.6.0",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",

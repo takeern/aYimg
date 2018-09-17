@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    index: path.resolve(__dirname, 'src', 'lib.js'),
+    index: path.resolve(__dirname, 'src', 'index.js'),
   },
   output: {
     filename: '[name].js',
@@ -22,6 +22,17 @@ module.exports = {
         loader: [ 'style-loader', 'css-loader' ],
         include: path.resolve(__dirname, 'src'),
       },
+      {
+        test: /\.(jpeg|png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
     ],
+  },
+  devServer: {
   },
 }
