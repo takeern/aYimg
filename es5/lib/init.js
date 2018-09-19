@@ -23,21 +23,21 @@ var isString = function isString(s) {
 }; //new canvas then push
 
 
-var initCanvas = function initCanvas(img, width, height) {
+var initCanvas = function initCanvas(el, img) {
   if (img.nodeType !== 1) {
     throw new Error('canvas初始化失败传入不为img');
   }
 
-  width = width || img.width;
-  height = height || img.height;
+  var width = el.style.width || img.width + 'px';
+  var height = el.style.height || img.height + 'px';
   var canvas = document.createElement('canvas');
   var imgWidth = img.width;
   var imgHeight = img.height;
   var scale = DPR();
   canvas.width = imgWidth * scale;
   canvas.height = imgHeight * scale;
-  canvas.style.width = width + 'px';
-  canvas.style.height = height + 'px';
+  canvas.style.width = width;
+  canvas.style.height = height;
   var ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = true;
   ctx.scale(scale, scale);
@@ -46,14 +46,14 @@ var initCanvas = function initCanvas(img, width, height) {
   this.ctx = ctx;
   this.imgComplete = true;
   this.imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  document.getElementsByTagName('body')[0].appendChild(canvas);
+  el.appendChild(canvas);
   debug('canvas init success');
 }; //judgment img parma
 
 
 exports.initCanvas = initCanvas;
 
-var initImg = function initImg(imgObj, width, height) {
+var initImg = function initImg(el, imgObj) {
   var _this = this;
 
   return new Promise(function (resolve) {
@@ -63,14 +63,15 @@ var initImg = function initImg(imgObj, width, height) {
     if (isString(imgObj)) {
       img.src = imgObj;
     } else if (imgObj && imgObj.nodeType === 1) {
-      initCanvas.bind(_this)(imgObj, width, height);
+      initCanvas.bind(_this)(el, imgObj);
       resolve();
     } else {
       throw new Error('解析img失败');
     }
 
     img.onload = function () {
-      initCanvas.bind(_this)(img, width, height);
+      debug('jere');
+      initCanvas.bind(_this)(el, img);
       resolve();
     };
   });

@@ -2,9 +2,12 @@
 
 ### usage
 
-Install dependencies:
-    npm i ayimg --save-dev
+#### Install dependencies:
 
+```bash
+npm i ayimg --save-dev
+```
+#### run
 ```javascript
 import Ayimg from 'ayimg'
 const ayimg = new Ayimg()
