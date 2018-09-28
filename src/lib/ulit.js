@@ -37,10 +37,6 @@ function deepcopy(obj) {
   return out
 }
 
-
-
-
-
 const dataFromCopy = (imageData, copyData) => {
   if(!isImageData(imageData)) throw new Error ('get imageData error from dataFromCopy')
   const { data } = imageData
@@ -76,6 +72,13 @@ const copyImageData = (data) => {
   return isArray(data) ? Array.from(data) :new Uint8ClampedArray(data) 
 }
 
+const copyImage = (imageData) => {
+  return new ImageData(
+    new Uint8ClampedArray(imageData.data),
+    imageData.width,
+    imageData.height
+  )
+}
 export {
   isImageData,
   toDobuleArray,
@@ -85,4 +88,5 @@ export {
   deepcopy,
   copyImageData,
   testPix,
+  copyImage,
 }
