@@ -8,7 +8,7 @@ const fnInit = function (fnName, code) {
     if(item.src === this.imgSrc) {
       item.items.find((p) => {
         if(p.path === this.path) {
-          this.imageData = p.imageData
+          this.imageData = copyImage(p.imageData)
           command = true
           debug('读取缓存')
           return true

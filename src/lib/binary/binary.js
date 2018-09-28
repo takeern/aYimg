@@ -1,7 +1,7 @@
 import { isImageData } from '../ulit'
 const debug = require('debug')('aYimg:grayscale')
 
-export default (imageData, code = 'otsu', ptile) => {
+export default (imageData, code = 'otsu', ptile = 0.5) => {
   if(!isImageData(imageData)) throw new Error('get imageData error from binary')
   const { data } = imageData
   let threshold 

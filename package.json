@@ -1,6 +1,6 @@
 {
   "name": "ayimg",
-  "version": "1.0.9",
+  "version": "1.2.4",
   "description": "image fitter",
   "main": "es5/index.js",
   "scripts": {
@@ -20,17 +20,7 @@
   },
   "homepage": "https://github.com/takeern/aYimg#readme",
   "dependencies": {
-    "@babel/core": "^7.0.1",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-transform-arrow-functions": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "babel-plugin-add-module-exports": "^1.0.0",
-    "debug": "^3.1.0",
-    "html-webpack-plugin": "^3.2.0",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "debug": "^3.1.0"
   }
 }
 

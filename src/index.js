@@ -110,13 +110,4 @@ const Ayimg = class {
   }
 }
 
-// export default Ayimg
-
-const ayimg = new Ayimg()
-
-ayimg.init('./src/assets/patch.jpeg', document.querySelector('#showChart')).then((m) => {
-  m.grayScale('avg').binary().erosive(4)
-  m.reload().grayScale('avg').binary().erosive(2).show()
-  debug(m)
-})
-// debug(obj.imageData)
+export default Ayimg
