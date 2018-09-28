@@ -1,5 +1,5 @@
 const debug = require('debug')('aYimg:init')
-
+import { copyImage } from './ulit'
 //获取图片分辨率
 const DPR = () => {
   const scale = 2
@@ -14,12 +14,12 @@ const isString = (s) => {
 }
 
 //new canvas then push
-export const initCanvas = function (el, img) {
+export const initCanvas = function (img, el) {
   if(img.nodeType !== 1) {
     throw new Error ('canvas初始化失败传入不为img')
   }
-  const width = el.style.width || img.width + 'px'
-  const height = el.style.height || img.height + 'px'
+  const width = (el && el.style.width)|| img.width + 'px'
+  const height = (el &&el.style.height) || img.height + 'px'
   const canvas = document.createElement('canvas')
   const imgWidth = img.width
   const imgHeight = img.height
@@ -36,27 +36,35 @@ export const initCanvas = function (el, img) {
   this.ctx = ctx
   this.imgComplete = true
   this.imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-  el.appendChild(canvas)
+  this.initData = copyImage(this.imageData)
+  this.imageName = this.imageName ? this.imageName++ : 1
+  const item = {
+    src: this.imgSrc,
+    items: [],
+  }
+  this.memory.push(item)
+  el && el.appendChild(canvas)
   debug('canvas init success')
 }
 
 //judgment img parma
 
-export const initImg = function (el, imgObj) {
+export const initImg = function (imgObj, el) {
   return new Promise((resolve) => {
     const img = new Image()
     img.setAttribute('crossOrigin', 'Anonymous')
     if(isString(imgObj)) {
       img.src = imgObj
+      this.imgSrc = imgObj
     }else if(imgObj && imgObj.nodeType === 1) {
-      initCanvas.bind(this)(el, imgObj)
+      img.src = imgObj.src
+      initCanvas.bind(this)(imgObj, el)
       resolve()
     }else {
       throw new Error('解析img失败') 
     }
     img.onload =() => {
-      debug('jere')
-      initCanvas.bind(this)(el, img)
+      initCanvas.bind(this)(img, el)
       resolve()
     }
   })

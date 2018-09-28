@@ -1,5 +1,12 @@
 ### 当前支持方法
 
+- init() 初始化
+
+参数          | 类型           | 默认        | 说明           | 必填 |
+:----------- | :-----------: |:-----------:|:-------------: |:------------- |
+image     | image/string     | 无          | 传入需要处理的image，可以是image，<img> 或者image url  |   Y |
+domElement  |domElement  | 无  | 将处理后的图像在dom中展示，通过控制domstyle 控制canvas展示  | N |
+
 - garyScaleFn() 灰化
 
 参数          | 类型           | 默认        | 说明           | 必填 |
