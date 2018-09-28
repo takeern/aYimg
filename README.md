@@ -7,9 +7,6 @@ Install dependencies:
 npm i ayimg --save-dev
 ```
 
-```bash
-npm i ayimg --save-dev
-```
 #### run
 ```javascript
 import Ayimg from 'ayimg'
