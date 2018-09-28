@@ -4,7 +4,7 @@
 
 Install dependencies:
 ```bash
-npm i ayimg --save-dev
+npm i ayimg --save
 ```
 
 #### run
