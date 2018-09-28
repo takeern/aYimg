@@ -2,7 +2,10 @@
 
 ### usage
 
-#### Install dependencies:
+Install dependencies:
+```bash
+npm i ayimg --save-dev
+```
 
 ```bash
 npm i ayimg --save-dev
