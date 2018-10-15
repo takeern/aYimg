@@ -10,22 +10,6 @@ const isString = (s) => {
   return Object.prototype.toString.call(s) === '[object String]'
 }
 
-const toDobuleArray = (imageData, canvas) => {
-  const { data } = imageData
-  let pix = []
-  const copyData = []
-  const { length } = data
-  const { width } = canvas
-  for(let i = 0; i < length; i += 4) {
-    pix.push(data[i])
-    if((i / 4 + 1) % width === 0) {
-      copyData.push(pix)
-      pix = []
-    }
-  }
-  return copyData
-}
-
 function deepcopy(obj) {
   let out = [], i = 0, len = obj.length
   for (; i < len; i++) {
@@ -81,7 +65,6 @@ const copyImage = (imageData) => {
 }
 export {
   isImageData,
-  toDobuleArray,
   isArray,
   dataFromCopy,
   isString,
