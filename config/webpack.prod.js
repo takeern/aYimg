@@ -4,7 +4,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const common = require('./webpack.common.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const SsrClientList = require('../plugins/ssrClient.js')
+// const SsrClientList = require('../plugins/ssrClient.js')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = merge(common, {
@@ -46,7 +46,7 @@ module.exports = merge(common, {
       }
     ),
     new OptimizeCSSAssetsPlugin({}),
-    new SsrClientList (),
+    // new SsrClientList (),
   ],
   optimization: {
     minimize: false, 
