@@ -7,6 +7,12 @@ Install dependencies:
 npm i ayimg --save
 ```
 
+Test:
+```bash
+npm i 
+npm run start
+```
+
 #### run
 ```javascript
 import Ayimg from 'ayimg'
