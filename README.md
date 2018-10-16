@@ -4,12 +4,9 @@
 
 Install dependencies:
 ```bash
-npm i ayimg --save-dev
+npm i ayimg --save
 ```
 
-```bash
-npm i ayimg --save-dev
-```
 #### run
 ```javascript
 import Ayimg from 'ayimg'
